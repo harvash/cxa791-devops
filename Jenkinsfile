@@ -8,10 +8,10 @@ podTemplate(
       ),
     ],
     volumes: [
-      persistentVolumeClaim:
+      persistentVolumeClaim(
         mountPath: '/root/.m2/repository' ,
         claimName: 'jenkins-pv-claim'  ,
-        readOnly: false 
+        readOnly: false )
     ]) {
       node(POD_LABEL) {
         stage('Get a Maven project'){
