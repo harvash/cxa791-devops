@@ -12,7 +12,8 @@ podTemplate(containers: [
         stage('Build a gradle project') {
           sh '''cd Chapter08/sample1
                 chmod +x gradlew
-                ./gradlew test''' }
+                ./gradlew test''' 
+          }
         stage('Code coverage') {
           sh '''pwd
                 cd Chapter08/sample1
@@ -23,6 +24,18 @@ podTemplate(containers: [
               reportDir: 'Chapter08/sample1/build/reports/jacoco/test/html',
               reportFiles: 'index.html',
               reportName: 'JaCoCo Report'
+            ]
+          )
+        }
+        stage('Checkstyle') {
+          sh '''pwd
+                cd Chapter08/sample1
+                ./gradlew checkstyle'''
+          publishHTML (
+            target: [
+              reportDir: 'Chapter08/sample1/build/reports/checkstyle',
+              reportFiles: 'main.html',
+              reportName: 'CheckStyle Report'
             ]
           )
         }
