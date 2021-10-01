@@ -14,7 +14,8 @@ podTemplate(containers: [
                 chmod +x gradlew
                 ./gradlew test''' }
         stage('Code coverage') {
-          sh '''pwdcd Chapter08/sample1
+          sh '''pwd
+                cd Chapter08/sample1
                 ./gradlew jacocoTestCoverageVerification
                 ./gradlew jacocoTestReport'''
           publishHTML (
