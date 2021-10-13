@@ -24,7 +24,6 @@ podTemplate(yaml: '''
       - name: kaniko-secret
         mountPath: /kaniko/.docker
     restartPolicy: Never
-    namespace: kaniko
     volumes:
     - name: shared-storage
       persistentVolumeClaim:
@@ -42,7 +41,10 @@ podTemplate(yaml: '''
       git 'https://github.com/dlambrig/Continuous-Delivery-with-Docker-and-Jenkins-Second-Edition.git'
       container('gradle') {
         stage('Build a gradle project') {
-          sh '''./gradlew build
+          sh '''pwd
+                cd Chapter08/sample1
+                chmod +x gradlew
+                ./gradlew build
                 mv ./build/libs/calculator-0.0.1-SNAPSHOT.jar /mnt'''
         }
       }

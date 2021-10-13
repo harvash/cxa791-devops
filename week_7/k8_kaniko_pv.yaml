@@ -2,7 +2,7 @@ apiVersion: v1
 kind: PersistentVolume
 metadata:
   name: kaniko-pv-volume
-  namespace: kaniko
+  namespace: jenkins
   labels:
     type: local
 spec:
@@ -18,7 +18,7 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: kaniko-pv-claim
-  namespace: kaniko
+  namespace: jenkins
 spec:
   storageClassName: manual
   accessModes:
