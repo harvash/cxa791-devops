@@ -20,12 +20,15 @@ spec:
       containers:
         - name: jenkins
           image: jenkins/jenkins:lts
+          env:
+            - name: TZ
+              value: America/New_York
           resources:
             limits:
               memory: "2Gi"
               cpu: "1000m"
             requests:
-              memory: "500Mi"
+              memory: "1000Mi"
               cpu: "500m"
           ports:
             - name: httpport
@@ -51,6 +54,30 @@ spec:
           volumeMounts:
             - name: jenkins-data
               mountPath: /var/jenkins_home         
+        - name: webhookrelayd
+          image: "webhookrelay/webhookrelayd:latest"
+          imagePullPolicy: IfNotPresent
+          command: ["/relayd"]
+          env:
+            - name: KEY
+              valueFrom:
+                secretKeyRef:
+                  name: whr-credentials
+                  key: key
+            - name: SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: whr-credentials
+                  key: secret
+            - name: BUCKET
+              value: "week6"
+          resources:
+            limits:
+              cpu: 100m
+              memory: 128Mi
+            requests:
+              cpu: 50m
+              memory: 64Mi
       volumes:
         - name: jenkins-data
           persistentVolumeClaim:
