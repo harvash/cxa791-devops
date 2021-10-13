@@ -25,11 +25,11 @@ spec:
               value: America/New_York
           resources:
             limits:
-              memory: "4Gi"
-              cpu: "2000m"
+              memory: "2Gi"
+              cpu: "1000m"
             requests:
               memory: "1000Mi"
-              cpu: "1000m"
+              cpu: "500m"
           ports:
             - name: httpport
               containerPort: 8080
