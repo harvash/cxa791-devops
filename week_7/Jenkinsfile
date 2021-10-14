@@ -47,6 +47,7 @@ podTemplate(yaml: '''
                 ./gradlew build
                 ls -l ./build/libs
                 cp ./build/libs/calculator-0.0.1-SNAPSHOT.jar /mnt
+                chmod +x /mnt/calculator-0.0.1-SNAPSHOT.jar
                 ls -l /mnt'''
         }
       }
@@ -60,6 +61,7 @@ podTemplate(yaml: '''
                 cat Dockerfile
                 ls -l /mnt
                 cp /mnt/calculator-0.0.1-SNAPSHOT.jar app.jar
+                chmod +x app.jar
                 pwd
                 ls -al
                 /kaniko/executor --context `pwd` --destination harvash/hello-kaniko:1.0'''
