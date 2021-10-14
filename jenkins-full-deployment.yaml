@@ -25,10 +25,10 @@ spec:
               value: America/New_York
           resources:
             limits:
-              memory: "2Gi"
-              cpu: "1000m"
+              memory: "4G"
+              cpu: "2000m"
             requests:
-              memory: "1000Mi"
+              memory: "2G"
               cpu: "500m"
           ports:
             - name: httpport

@@ -58,6 +58,7 @@ podTemplate(yaml: '''
                 echo 'COPY ./calculator-0.0.1-SNAPSHOT.jar app.jar' >> Dockerfile
                 echo 'ENTRYPOINT ["java", "-jar", "app.jar"]' >> Dockerfile
                 cat Dockerfile
+                ls -l /mnt
                 cp /mnt/calculator-0.0.1-SNAPSHOT.jar app.jar
                 pwd
                 ls -al
